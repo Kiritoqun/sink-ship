@@ -1,0 +1,262 @@
+* {
+    border: 0;
+    margin: 0;
+    padding: 0;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+body, html{
+    height: 100%;
+}
+body{
+    display: flex;
+    flex-direction: column;
+    background-image: 
+        linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+        url("images/Meeresblick.png") ;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+main{
+    flex-grow: 1;
+}
+header{
+    color: yellow;
+    height: 10%;
+}
+footer{
+    color: yellow	;
+    height: 5%;
+}
+
+
+
+.limiter{
+    width: 90%;  
+    margin-left: auto;
+    margin-right: auto;
+    height: 100%;
+    max-width: 1000px;
+    padding: 1em;
+    padding-top: 0;
+}
+.controls{
+    width: 80%;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    gap: 6em;
+}
+.controls button {
+    border: 2px solid black;
+    background-color: yellow;
+    margin: 1vh;
+    padding: 0.5em 2em;
+    cursor: pointer;
+    border-radius: 20px;
+}
+.field.cursor {
+  cursor: grab;
+}
+
+
+
+#computerfield.shootable {
+    cursor: crosshair;
+}
+
+
+
+.server-message {
+    margin: auto;
+    padding: 0.5em 1em;
+    background-color: white;
+    border: 2px solid black;
+    border-radius: 7px;
+    font-family: sans-serif;
+    text-align: center;
+    max-width: 500px;
+    min-height: 1em;
+}
+
+
+
+.fields{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;        
+    gap: 1em;               
+    justify-content: center;
+    padding: 1em;   
+}
+.field{
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: repeat(10, 1fr);
+    background-color: white;
+    width: max(30%, 400px);
+    aspect-ratio: 1 / 1;
+    border: 2px solid black;       
+}
+.playerfield, .computerfield {
+    flex: 1 1 400px;
+    justify-content: center;
+}
+
+
+
+.cell{
+    border: 1px solid black;
+    width: 100%;
+    height: 100%;
+    background-image: url("images/backgrounds.svg");
+    background-size: 500% 400%;
+    box-sizing: border-box;
+}
+.cell.shot {
+    cursor: not-allowed !important;
+    background-position: -100% 0 !important;
+}
+.cell.miss {
+    background-color: lightblue !important;
+    opacity: 0.5 !important;
+    
+}
+.cell.hit{
+    background-color: red !important;
+    background-position: -200% 0 !important;
+}
+.cell.base{
+    background-position: 0 0;
+    background-color: white;
+}
+.cell.water{
+    background-color: lightblue;
+    background-position: -100% 0;
+}
+.cell.left{
+    background-color: lightblue;
+    background-position: 0 -100%;
+}
+.cell.right{
+    background-color: lightblue;
+    background-position: -200% -100%;
+}
+.cell.mid_h{
+    background-color: lightblue;
+    background-position: -100% -100%;
+}
+.cell.mid_v{
+    background-color: lightblue;
+    background-position: -400% -100%;
+}
+.cell.top{
+    background-color: lightblue;
+    background-position: -400% 0;
+}
+.cell.bottom{
+    background-color: lightblue;
+    background-position: -400% -200%;
+}
+
+
+
+.cell.valid {
+    background-color: rgba(0, 255, 0, 0.5);
+}
+.cell.invalid {
+    background-color: rgba(255, 0, 0, 0.5); 
+}
+
+
+
+table{
+    margin: 1em;
+    border-collapse: collapse;
+}
+table th{
+    min-width: 32px;
+    text-align: center;
+    padding: 10px;
+}
+table td{
+    text-align: center;
+    padding: 10px;
+}
+
+
+
+.h.Battleship, .v.Battleship,
+.h.Cruiser, .v.Cruiser,
+.h.Destroyer, .v.Destroyer,
+.h.Submarine, .v.Submarine {
+  background-image: url("images/backgrounds.svg");
+  background-size: 500% 400%;
+}
+
+.h.Battleship { background-position: 0 -199%; }
+.v.Battleship { background-position: 0 -300%; }
+
+.h.Cruiser { background-position: -100% -199.5%; }
+.v.Cruiser { background-position: -102.5% -300%; }
+
+.h.Destroyer { background-position: -199.5% -199%; }
+.v.Destroyer { background-position: -201% -300%; }
+
+.h.Submarine { background-position: -300.5% -199.5%; }
+.v.Submarine { background-position: -302% -300%; }
+
+
+
+.select{
+    cursor: pointer;
+}
+.select:hover{
+    background-color: rgb(245, 118, 230, 0.5);
+}
+
+
+
+#winnerOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+#winnerText {
+    font-size: 2em;
+}
+.winner-box {
+    background-color: white;
+    padding: 1.5em 3em;
+    border-radius: 30px;
+    text-align: center;
+    font-size: 2em;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    flex-direction: column;
+    border: 1px solid black;
+}
+#winnerOverlay button {
+    margin-top: 1em;
+    padding: 0.5em 1.5em;
+    font-size: 1em;
+    border-radius: 10px;
+    border: 1px solid black;
+    background-color: lightblue;
+    cursor: pointer;
+}
+#winnerOverlay button:hover {
+    background-color: lightskyblue;
+}
